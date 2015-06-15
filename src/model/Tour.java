@@ -6,33 +6,24 @@
 
 package model;
 
-import java.util.List;
-import model.observable.ChessGame;
-
 /**
  *
  * @author timotheetroncy
  */
-public class Echiquier {
-    private List <Jeu> jeux;
+public class Tour extends AbstractPiece{
 
-    public boolean isEchecEtMat() {
+    @Override
+    public Boolean capture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
+    @Override
+    public Boolean isMoveOk(int xFinal, int yFinal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void switchJoueur() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public String getMessage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    public Couleur getColorCurrentPlayer() {
+    @Override
+    public Boolean move(int xFinal, int yFinal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

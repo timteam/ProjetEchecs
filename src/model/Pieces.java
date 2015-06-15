@@ -10,6 +10,14 @@ package model;
  *
  * @author timotheetroncy
  */
-public class Pieces {
+interface Pieces {
+    public Boolean capture();
+    public Couleur getCouleur();
+    public String getName();
+    public int getX();
+    public int getY();
+    public Boolean isMoveOk(int xFinal, int yFinal);
+    public Boolean move(int xFinal, int yFinal);
+    
     
 }
