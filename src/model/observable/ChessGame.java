@@ -18,7 +18,7 @@ public class ChessGame extends Observable{
 	
 	private Echiquier echiquier;
 	/**
-	 * Cr�e une instance de la classe Echiquier
+	 * Cre une instance de la classe Echiquier
 	 */
 	public ChessGame() {
 		super();
@@ -39,14 +39,14 @@ public class ChessGame extends Observable{
 
 
 	/**
-	 * Permet de d�placer une pi�ce connaissant ses coordonn�es initiales vers ses
-	 * coordonn�es finales si le d�placement est "l�gal". 
-	 * Si d�placement OK, permet l'alternance des joueurs.
+	 * Permet de dplacer une pice connaissant ses coordonnes initiales vers ses
+	 * coordonnes finales si le dplacement est "lgal". 
+	 * Si dplacement OK, permet l'alternance des joueurs.
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * @return OK si d�placement OK
+	 * @return OK si dplacement OK
 	 * si OK, permet l'alternance des joueurs
 	 */
 	public boolean move (int xInit, int yInit, int xFinal, int yFinal){

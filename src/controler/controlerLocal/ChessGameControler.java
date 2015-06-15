@@ -9,8 +9,8 @@ import controler.AbstractChessGameControler;
 /**
  * @author francoise.perrin
  * 
- * Ce controleur ne fait quasi rien � part
- * transformer les coordonn�es venant de la vue sous forme de Coord
+ * Ce controleur ne fait quasi rien  part
+ * transformer les coordonnes venant de la vue sous forme de Coord
  * en 2 int
  *
  */

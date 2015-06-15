@@ -12,7 +12,7 @@ import model.Pieces;
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
  * Classe qui fabrique une liste de pieces de jeu d'echec
- * de la couleur pass�e en param�tre
+ * de la couleur passe en paramtre
  *
  */
 public class ChessPieceFactory {
@@ -26,7 +26,7 @@ public class ChessPieceFactory {
 
 	/**
 	 * @param pieceCouleur
-	 * @return liste de pi�ces de jeu d'�chec
+	 * @return liste de pices de jeu d'chec
 	 */
 	public static List<Pieces> newPieces(Couleur pieceCouleur){
 
@@ -58,6 +58,8 @@ public class ChessPieceFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessPieceFactory.newPieces(Couleur.BLANC));
+		System.out.println(ChessPieceFactory.newPieces(Couleur.NOIR));
+                List<Pieces> test = ChessPieceFactory.newPieces(Couleur.NOIR);
+                System.out.println(test);
 	}
 }

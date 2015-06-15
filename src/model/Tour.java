@@ -12,19 +12,18 @@ package model;
  */
 public class Tour extends AbstractPiece{
 
+    public Tour(String name, Couleur couleur, Coord coord) {
+        super(name, couleur, coord);
+    }
+
     @Override
     public Boolean capture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Boolean isMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean move(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean specificMoveOk(int xFinal, int yFinal) {
+        return (getX() == xFinal || getY() == yFinal) && !(getX() == xFinal && getY() == yFinal);
     }
     
 }

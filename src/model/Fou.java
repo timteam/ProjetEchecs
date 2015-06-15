@@ -12,6 +12,10 @@ package model;
  */
 public class Fou extends AbstractPiece{
 
+    public Fou(String name, Couleur couleur, Coord coord) {
+        super(name, couleur, coord);
+    }
+
     @Override
     public Boolean capture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -23,7 +27,7 @@ public class Fou extends AbstractPiece{
     }
 
     @Override
-    public Boolean move(int xFinal, int yFinal) {
+    public boolean specificMoveOk(int xFinal, int yFinal) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

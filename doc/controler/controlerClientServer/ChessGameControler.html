@@ -111,22 +111,22 @@ java.lang.Object
  Inspiration Jacques SARAYDARYAN, Adrien GUENARD -
 
  Il existe une instance Client et 1 instance Server de cette classe
- pendant l'ex�cution.
+ pendant l'excution.
  Chacune sera alternativement en mode sender et receiver
  
- Lorsqu'elle est en mode "Sender" (m�thode move())
- Elle sert � ordonner � l'�chiquier cot� "Sender" de faire un d�placement
+ Lorsqu'elle est en mode "Sender" (mthode move())
+ Elle sert  ordonner  l'chiquier cot "Sender" de faire un dplacement
   -> this.chessGame.move(initCoord.x, initCoord.y, finalCoord.x, finalCoord.y);
- Puis elle sert � envoyer les coordonn�es du d�placement
- � l'instance qui est en mode "Receiver" 
+ Puis elle sert  envoyer les coordonnes du dplacement
+  l'instance qui est en mode "Receiver" 
   -> this.channel.writeMessage(new Object[]{initCoord, finalCoord});
  
- Lorsqu'elle est en mode "Receiver" (m�thode run())
- Elle informe l'�chiquier cot� "Receiver" de faire le d�placement
+ Lorsqu'elle est en mode "Receiver" (mthode run())
+ Elle informe l'chiquier cot "Receiver" de faire le dplacement
  
- Les objets �chang�s (message) sont de type Object[].
+ Les objets changs (message) sont de type Object[].
  
- Dans tous les cas, le �chiquiers sont "observ�s" par la JFrame qui 
+ Dans tous les cas, le chiquiers sont "observs" par la JFrame qui 
  rafraichira son affichage en fonction des mouvements</DD>
 </DL>
 <HR>

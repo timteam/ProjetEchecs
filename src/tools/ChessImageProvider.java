@@ -13,9 +13,9 @@ import model.Couleur;
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
  * Cette classe s'appuie sur ChessPieceImage
- * pour fournir les noms des images des pi�ces
- * qui sont utilis�es dans l'IHM par rapport � des indices
- * exprim�s par rapport aux lignes (i), colonnes (j) du damier
+ * pour fournir les noms des images des pices
+ * qui sont utilises dans l'IHM par rapport  des indices
+ * exprims par rapport aux lignes (i), colonnes (j) du damier
  * de l'IHM graphique
  *  *
  */
@@ -52,7 +52,7 @@ public class ChessImageProvider {
 	/**
 	 * @param i
 	 * @param j
-	 * @return le type de la pi�ce aux coordonn�es i, j
+	 * @return le type de la pice aux coordonnes i, j
 	 */
 	public static String getType(int i, int j) {
 		String type = null;
@@ -70,7 +70,7 @@ public class ChessImageProvider {
 	/**
 	 * @param i
 	 * @param j
-	 * @return couleur de la pi�ce aux coordonn�es i, j
+	 * @return couleur de la pice aux coordonnes i, j
 	 */
 	public static Couleur getCouleur(int i, int j) {
 		Couleur couleur  = null;
@@ -88,7 +88,7 @@ public class ChessImageProvider {
 	/**
 	 * @param pieceType
 	 * @param pieceCouleur
-	 * @return nom fichier contenant image de la pi�ce
+	 * @return nom fichier contenant image de la pice
 	 */
 	public static String getImageFile(String pieceType, Couleur pieceCouleur){
 		String ret, key, value;
@@ -105,7 +105,7 @@ public class ChessImageProvider {
 	/**
 	 * @param i
 	 * @param j
-	 * @return true s'il existe une pi�ce sur cette ligne et cette colonne
+	 * @return true s'il existe une pice sur cette ligne et cette colonne
 	 */
 	public static boolean isCoordOK(int i, int j) {
 		boolean ret = false;

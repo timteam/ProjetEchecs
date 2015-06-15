@@ -10,7 +10,7 @@ package model;
  *
  * @author timotheetroncy
  */
-interface Pieces {
+public interface Pieces {
     public Boolean capture();
     public Couleur getCouleur();
     public String getName();

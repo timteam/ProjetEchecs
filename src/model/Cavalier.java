@@ -6,25 +6,48 @@
 
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author timotheetroncy
  */
 public class Cavalier extends AbstractPiece{
 
+    public Cavalier(String name, Couleur couleur, Coord coord) {
+        super(name, couleur, coord);
+    }
+
     @Override
     public Boolean capture() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Boolean isMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    private List<Coord> getTargetCoords(){
+        List<Coord> coords = new ArrayList<Coord>();
+        coords.add(new Coord (getX()+2,getY()+1));
+        coords.add(new Coord (getX()+2,getY()-1));
+        coords.add(new Coord (getX()-2,getY()+1));
+        coords.add(new Coord (getX()-2,getY()-1));
+        coords.add(new Coord (getX()+1,getY()+2));
+        coords.add(new Coord (getX()+1,getY()-2));
+        coords.add(new Coord (getX()-1,getY()+2));
+        coords.add(new Coord (getX()-1,getY()-2));
+        return coords;
+    }
+    private Boolean coordIsInTargetCoords(List<Coord> l, Coord c){
+        for(Coord ce: l){
+            if(ce.isEqual(c)){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
-    public Boolean move(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean specificMoveOk(int xFinal, int yFinal) {
+        List<Coord> coords = getTargetCoords();
+        return (coordIsInTargetCoords(coords, new Coord(xFinal, yFinal)));
     }
-    
 }

@@ -11,5 +11,24 @@ package model;
  * @author timotheetroncy
  */
 public class Pion extends AbstractPiece implements Pions {
+
+    public Pion(String name, Couleur couleur, Coord coord) {
+        super(name, couleur, coord);
+    }
+
+    @Override
+    public Boolean capture() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Boolean isMoveOk(int xFinal, int yFinal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean specificMoveOk(int xFinal, int yFinal) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
