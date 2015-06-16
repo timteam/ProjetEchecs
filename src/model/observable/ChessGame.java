@@ -16,7 +16,7 @@ import model.Echiquier;
  */
 public class ChessGame extends Observable{
 	
-	private Echiquier echiquier;
+	private final Echiquier echiquier;
 	/**
 	 * Cre une instance de la classe Echiquier
 	 */
@@ -56,7 +56,6 @@ public class ChessGame extends Observable{
 		}
 		if (ret){
 			echiquier.switchJoueur();
-			
 		}
 		this.setChanged();
 		this.notifyObservers(new Object[]{xInit, yInit, xFinal, yFinal, ret});
@@ -64,7 +63,7 @@ public class ChessGame extends Observable{
 	}
 
 	public boolean isEchecEtMat(){
-		return echiquier.isEchecEtMat();		
+		return echiquier.isEchecEtMat();
 	}
 	
 	public String getMessage() {

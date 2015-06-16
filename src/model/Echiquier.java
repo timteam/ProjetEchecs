@@ -27,7 +27,7 @@ public class Echiquier {
     }
 
     public boolean isEchecEtMat() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return false;
     }
 
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {

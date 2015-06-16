@@ -77,9 +77,14 @@ public abstract class AbstractPiece implements Pieces {
 
     @Override
     public Boolean move(int xFinal, int yFinal) {
+        System.out.print(this.coord.x);
+        System.out.print(this.coord.y);
         if (isMoveOk(xFinal, yFinal)) {
             this.coord.x = xFinal;
             this.coord.y = yFinal;
+            //DEBUG
+            System.out.print(this.coord.x);
+            System.out.print(this.coord.y);
             return true;
         }else{
             return false;
