@@ -15,30 +15,6 @@ public abstract class AbstractPiece implements Pieces {
     private String name;
     private Couleur couleur;
 
-    public static void main(String[] args) {
-        Pieces maTour = new Tour("N_To1", Couleur.NOIR, new Coord(0, 0));
-        boolean moveOK;
-        moveOK = maTour.isMoveOk(0, 4);
-        moveOK = maTour.isMoveOk(1, 1);
-        moveOK = maTour.isMoveOk(4, 0);
-        moveOK = maTour.isMoveOk(10, 0);
-        moveOK = maTour.isMoveOk(0, 0);
-        moveOK = maTour.isMoveOk(0, 10);
-        moveOK = maTour.isMoveOk(2, 1);
-        moveOK = maTour.isMoveOk(0, 4);
-        moveOK = maTour.isMoveOk(0, 4);
-
-        Pieces monCavalier = new Cavalier("N_Ca1", Couleur.NOIR, new Coord(1, 0));
-        boolean moveOK2;
-        moveOK2 = monCavalier.isMoveOk(0, 2);
-        moveOK2 = monCavalier.isMoveOk(2, 2);
-        moveOK2 = monCavalier.isMoveOk(2, 0);
-        moveOK2 = monCavalier.isMoveOk(-1, -1);
-        moveOK2 = monCavalier.isMoveOk(1, 0);
-        moveOK2 = monCavalier.isMoveOk(1, 0);
-
-    }
-
     @Override
     public Boolean isMoveOk(int xFinal, int yFinal) {
         return Coord.coordonnees_valides(xFinal, yFinal) && specificMoveOk(xFinal, yFinal);

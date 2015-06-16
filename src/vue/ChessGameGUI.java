@@ -71,7 +71,7 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
             JPanel square = new JPanel(new BorderLayout());
             chessBoard.add(square);
 
-            cases.put(square, new Coord(i / 8, i % 8));
+            cases.put(square, new Coord(i % 8, i / 8));
 
             int row = (i / 8) % 2;
             if (row == 0) {
@@ -88,9 +88,9 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 8; x++) {
                 if (ChessImageProvider.isCoordOK(x, y)) {
-                    file = ChessImageProvider.getImageFile(ChessImageProvider.getType(x, y), ChessImageProvider.getCouleur(x, x));
+                    file = ChessImageProvider.getImageFile(ChessImageProvider.getType(x, y), ChessImageProvider.getCouleur(x, y));
                     JLabel piece = new JLabel(new ImageIcon(file));
-                    JPanel panel = (JPanel) chessBoard.getComponent(x * 8 + y);
+                    JPanel panel = (JPanel) chessBoard.getComponent(x *8 + y);
                     panel.add(piece);
                 }
             }
