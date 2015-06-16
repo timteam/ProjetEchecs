@@ -16,8 +16,14 @@ public abstract class AbstractPiece implements Pieces {
     private Couleur couleur;
 
     @Override
-    public Boolean isMoveOk(int xFinal, int yFinal) {
+    final public Boolean isMoveOk(int xFinal, int yFinal) {
         return Coord.coordonnees_valides(xFinal, yFinal) && specificMoveOk(xFinal, yFinal);
+    }
+
+    @Override
+    final public Boolean isCaught() {
+        this.coord.x = this.coord.y = -1;
+        return true;
     }
 
     public AbstractPiece(String name, Couleur couleur, Coord coord) {
@@ -53,16 +59,11 @@ public abstract class AbstractPiece implements Pieces {
 
     @Override
     public Boolean move(int xFinal, int yFinal) {
-        System.out.print(this.coord.x);
-        System.out.print(this.coord.y);
         if (isMoveOk(xFinal, yFinal)) {
             this.coord.x = xFinal;
             this.coord.y = yFinal;
-            //DEBUG
-            System.out.print(this.coord.x);
-            System.out.print(this.coord.y);
             return true;
-        }else{
+        } else {
             return false;
         }
 

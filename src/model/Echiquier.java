@@ -30,20 +30,40 @@ public class Echiquier {
         return false;
     }
 
+    
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
-        if (jeuCourant.Move(xInit, yInit, xFinal, yFinal)){
-            return true;
-        }else{
+
+        if (someoneOnThePath(xInit, yInit, xFinal, yFinal) && isNotCavalier(xInit, yInit)) {
             return false;
         }
+        if (isFriend(xFinal, yFinal)) {
+            return false;
+        }
+        if (jeuCourant.isMoveOk(xInit, yInit, xFinal, yFinal)) {
+            if (isNotEmpty(xFinal, yFinal)) {
+                //c'est un ennemi
+                    //on le mange
+                    getJeuAdverse().capture(xFinal, yFinal);
+                }
+            if (jeuCourant.Move(xInit, yInit, xFinal, yFinal))return true;
+            
+        }
+        return false;
+
     }
 
     public void switchJoueur() {
-        if (this.jeuCourant.getCouleur() == Couleur.BLANC){
+        if (this.jeuCourant.getCouleur() == Couleur.BLANC) {
             this.jeuCourant = jeuNoir;
-        }else{
+        } else {
             this.jeuCourant = jeuBlanc;
         }
+    }
+    public Jeu getJeuAdverse(){
+        if (this.jeuCourant.getCouleur() == Couleur.BLANC) {
+            return jeuNoir;
+        }
+        return jeuBlanc;
     }
 
     public Couleur getColorCurrentPlayer() {
@@ -61,34 +81,53 @@ public class Echiquier {
     @Override
     public String toString() {
         String string = "\t  0 \t  1 \t  2 \t  3 \t  4 \t  5 \t  6 \t  7\n";
-        
-        for(int y = 0; y < 8 ; y++){
-                string += y + "    \t";
-            for (int x = 0; x < 8 ; x++){
 
-                if (jeuBlanc.isPieceHere(x, y)){
-                    string += jeuBlanc.getPieceName(x,y) + "\t";
-                }else if(jeuNoir.isPieceHere(x, y)){
-                    string += jeuNoir.getPieceName(x,y) + "\t";
-                }else{
+        for (int y = 0; y < 8; y++) {
+            string += y + "    \t";
+            for (int x = 0; x < 8; x++) {
+
+                if (jeuBlanc.isPieceHere(x, y)) {
+                    string += jeuBlanc.getPieceName(x, y) + "\t";
+                } else if (jeuNoir.isPieceHere(x, y)) {
+                    string += jeuNoir.getPieceName(x, y) + "\t";
+                } else {
                     string += "  X  \t";
                 }
             }
             string += "\n";
         }
-        
+
         return string;
     }
-    
+
     public static void main(String[] args) {
         Echiquier ech = new Echiquier();
         System.out.println(ech);
-        if (ech.move(1, 7, 0, 5)){
+        if (ech.move(1, 7, 0, 5)) {
             System.out.println("\nmouvement OK");
-        }else{
+        } else {
             System.out.println("\nmouvement impossible");
         }
         System.out.println(ech);
     }
 
+    private Boolean isNotEmpty(int xFinal, int yFinal) {
+        if(jeuNoir.isPieceHere(xFinal, yFinal) || jeuBlanc.isPieceHere(xFinal, yFinal))return false;
+        return true;
+    }
+
+    private Boolean isFriend(int xFinal, int yFinal) {
+        return jeuCourant.isPieceHere(xFinal, yFinal);
+    }
+
+    private Boolean someoneOnThePath(int xInit, int yInit, int xFinal, int yFinal) {
+        return false;
+    }
+
+    private Boolean isNotCavalier(int xInit, int yInit) {
+        if(jeuCourant.getPieceType(xInit, yInit) == "Cavalier"){
+            return false;
+        }
+        return true;
+    }
 }

@@ -11,7 +11,7 @@ package model;
  * @author timotheetroncy
  */
 public interface Pieces {
-    public Boolean capture();
+    public Boolean isCaught();
     public Couleur getCouleur();
     public String getName();
     public int getX();

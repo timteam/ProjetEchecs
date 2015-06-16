@@ -19,6 +19,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
+import java.util.Observer;
 import java.util.TreeMap;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -35,7 +37,7 @@ import tools.ChessImageProvider;
  *
  * @author timotheetroncy
  */
-public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener {
+public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener, Observer {
 
     private final JLayeredPane layeredPane;
     private final JPanel chessBoard;
@@ -75,9 +77,9 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 
             int row = (i / 8) % 2;
             if (row == 0) {
-                square.setBackground(i % 2 == 0 ? Color.black : Color.white);
-            } else {
                 square.setBackground(i % 2 == 0 ? Color.white : Color.black);
+            } else {
+                square.setBackground(i % 2 == 0 ? Color.black : Color.white);
             }
         }
         initPieces();
@@ -173,6 +175,11 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
     @Override
         public void mouseMoved(MouseEvent e) {
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

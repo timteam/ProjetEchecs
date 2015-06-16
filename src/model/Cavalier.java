@@ -19,11 +19,6 @@ public class Cavalier extends AbstractPiece{
         super(name, couleur, coord);
     }
 
-    @Override
-    public Boolean capture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private List<Coord> getTargetCoords(){
         List<Coord> coords = new ArrayList<Coord>();
         coords.add(new Coord (getX()+2,getY()+1));

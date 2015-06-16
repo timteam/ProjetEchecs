@@ -15,12 +15,6 @@ public class Tour extends AbstractPiece{
     public Tour(String name, Couleur couleur, Coord coord) {
         super(name, couleur, coord);
     }
-
-    @Override
-    public Boolean capture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     @Override
     public boolean specificMoveOk(int xFinal, int yFinal) {
         return (getX() == xFinal || getY() == yFinal) && !(getX() == xFinal && getY() == yFinal);

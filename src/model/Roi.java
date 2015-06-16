@@ -6,6 +6,9 @@
 
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author timotheetroncy
@@ -17,18 +20,29 @@ public class Roi extends AbstractPiece{
     }
 
     @Override
-    public Boolean capture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean isMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean specificMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Coord> coords = getTargetCoords();
+        return (coordIsInTargetCoords(coords, new Coord(xFinal, yFinal)));
     }
     
+        private List<Coord> getTargetCoords(){
+        List<Coord> coords = new ArrayList<Coord>();
+        coords.add(new Coord (getX()+1,getY()+1));
+        coords.add(new Coord (getX()+1,getY()-1));
+        coords.add(new Coord (getX()-1,getY()+1));
+        coords.add(new Coord (getX()-1,getY()-1));
+        coords.add(new Coord (getX(),getY()+1));
+        coords.add(new Coord (getX(),getY()-1));
+        coords.add(new Coord (getX()+1,getY()));
+        coords.add(new Coord (getX()-1,getY()));
+        return coords;
+    }
+    private Boolean coordIsInTargetCoords(List<Coord> l, Coord c){
+        for(Coord ce: l){
+            if(ce.isEqual(c)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

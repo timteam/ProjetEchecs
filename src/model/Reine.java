@@ -3,32 +3,56 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package model;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author timotheetroncy
  */
-public class Reine extends AbstractPiece{
+public class Reine extends AbstractPiece {
 
     public Reine(String name, Couleur couleur, Coord coord) {
         super(name, couleur, coord);
     }
 
-    @Override
-    public Boolean capture() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Boolean isMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     @Override
     public boolean specificMoveOk(int xFinal, int yFinal) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Coord> coords = getTargetCoords();
+        return (getX() == xFinal || getY() == yFinal || coordIsInTargetCoords(coords, new Coord(xFinal, yFinal))) && !(getX() == xFinal && getY() == yFinal);
     }
-    
+
+    private List<Coord> getTargetCoords() {
+        List<Coord> coords = new ArrayList<Coord>();
+        Boolean GH = true, GB = true, DH = true, DB = true;
+        
+        for (int i=1; i<8; i++){
+            if (DB){
+              coords.add(new Coord(getX()+i,getY()+i));
+            }
+            if (DH){
+               coords.add(new Coord(getX()+i,getY()-i)); 
+            }
+            if (GB){
+                coords.add(new Coord(getX()-i,getY()+i));
+            }
+            if (GH){
+              coords.add(new Coord(getX()-i,getY()-i));  
+            }
+            
+        }
+        return coords;
+    }
+
+    private Boolean coordIsInTargetCoords(List<Coord> l, Coord c) {
+        for (Coord ce : l) {
+            if (ce.isEqual(c)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
