@@ -3,6 +3,7 @@ package model.observable;
 
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 import model.Couleur;
 import model.Echiquier;
 
@@ -14,7 +15,7 @@ import model.Echiquier;
  * et en simplifie l'interface ( DP Proxy, Facade, Observer)
  *
  */
-public class ChessGame extends Observable{
+public class ChessGame extends Observable {
 	
 	private final Echiquier echiquier;
 	/**
@@ -73,6 +74,53 @@ public class ChessGame extends Observable{
 
 	public Couleur getColorCurrentPlayer(){		
 		return echiquier.getColorCurrentPlayer();		
-	}	
+        }
+
+    @Override
+    public synchronized int countObservers() {
+        return super.countObservers(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public synchronized boolean hasChanged() {
+        return super.hasChanged(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected synchronized void clearChanged() {
+        super.clearChanged(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    protected synchronized void setChanged() {
+        super.setChanged(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public synchronized void deleteObservers() {
+        super.deleteObservers(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notifyObservers(Object arg) {
+        super.notifyObservers(arg); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notifyObservers() {
+        super.notifyObservers(); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public synchronized void deleteObserver(Observer o) {
+        super.deleteObserver(o); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public synchronized void addObserver(Observer o) {
+        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
+    }
+        
+        
 
 }
