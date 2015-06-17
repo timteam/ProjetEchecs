@@ -44,7 +44,7 @@ public class Echiquier {
         }
         
         if (jeuCourant.isMoveOk(xInit, yInit, xFinal, yFinal)) {
-            if (isNotEmpty(xFinal, yFinal)) {
+            if (!isEmpty(xFinal, yFinal)) {
                 //c'est un ennemi
                     //on le mange
                     getJeuAdverse().capture(xFinal, yFinal);
@@ -115,7 +115,7 @@ public class Echiquier {
         System.out.println(ech);
     }
 
-    private Boolean isNotEmpty(int xFinal, int yFinal) {
+    private Boolean isEmpty(int xFinal, int yFinal) {
         if(jeuNoir.isPieceHere(xFinal, yFinal) || jeuBlanc.isPieceHere(xFinal, yFinal))return false;
         return true;
     }

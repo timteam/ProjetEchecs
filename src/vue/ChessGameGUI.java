@@ -38,8 +38,7 @@ import tools.ChessImageProvider;
  *
  * @author timotheetroncy
  */
-public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener//, Observer 
-{
+public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener, Observer {
 
     private final JLayeredPane layeredPane;
     private final JPanel chessBoard;
@@ -152,24 +151,24 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
         // System.out.println(coordDebut);
         // System.out.println(coordFin);
         chessPiece.setVisible(false);
-        Boolean moveOK = controler.move(coordDebut, coordFin);
-
-        if (moveOK) {
-            if (panelFin instanceof JLabel) {
-                Container parent = panelFin.getParent();
-                parent.remove(panelFin);
-                parent.add(chessPiece);
-            }else{
-                    Container parent = (Container) panelFin;
-                    parent.add(chessPiece);
-            }
-
-        } else {
-            Container parent = (Container) panelDebut;
-            parent.add(chessPiece);
-        }
-
-        chessPiece.setVisible(true);
+        controler.move(coordDebut, coordFin);
+//
+//        if (moveOK) {
+//            if (panelFin instanceof JLabel) {
+//                Container parent = panelFin.getParent();
+//                parent.remove(panelFin);
+//                parent.add(chessPiece);
+//            }else{
+//                    Container parent = (Container) panelFin;
+//                    parent.add(chessPiece);
+//            }
+//
+//        } else {
+//            Container parent = (Container) panelDebut;
+//            parent.add(chessPiece);
+//        }
+//
+//        chessPiece.setVisible(true);
     }
 
     @Override
@@ -195,17 +194,20 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 
     }
 
-//    @Override
-//    //refreshes the vue
-//    public void update(Observable o, Object arg) {
-//        new Coord(arg[0]), arg[1]);
-//        new Coord(arg[2], arg[3]);
-//        JPanel jpDebut = casesFromCoord.get();
-//        JPanel jp2Fin = casesFromCoord.get();
-//        chessPiece.setVisible(false);
-//
-//        Container parent = (Container) panelFin;
-//        parent.add(chessPiece);
-//        chessPiece.setVisible(true);
-//    }
+    @Override
+    //refreshes the vue
+    public void update(Observable o, Object ar) {
+        Object[] arg = (Object[]) ar;
+        JPanel jpDebut = casesFromCoord[(int) arg[0]][(int) arg[1]];
+        JPanel jpFin = casesFromCoord[(int) arg[2]][(int) arg[3]];
+        //Si move OK
+        if ((Boolean) arg[4]) {
+                jpFin.removeAll();
+                jpFin.add(chessPiece);
+        } else {
+
+            jpDebut.add(chessPiece);
+        }
+        chessPiece.setVisible(true);
+    }
 }
