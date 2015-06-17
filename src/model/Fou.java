@@ -49,7 +49,7 @@ public class Fou extends AbstractPiece{
 
     private Boolean coordIsInTargetCoords(List<Coord> l, Coord c) {
         for (Coord ce : l) {
-            if (ce.isEqual(c)) {
+            if (ce.equals(c)) {
                 return true;
             }
         }

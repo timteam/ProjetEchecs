@@ -1,9 +1,13 @@
 package model.observable;
 
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JPanel;
+import model.Coord;
 import model.Couleur;
 import model.Echiquier;
 
@@ -18,6 +22,7 @@ import model.Echiquier;
 public class ChessGame extends Observable {
 	
 	private final Echiquier echiquier;
+        private HashMap<Coord, JPanel> obsCasesFromCoord = null;
 	/**
 	 * Cre une instance de la classe Echiquier
 	 */
@@ -47,7 +52,7 @@ public class ChessGame extends Observable {
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * @return OK si dplacement OK
+	 * @return OK si déplacement OK
 	 * si OK, permet l'alternance des joueurs
 	 */
 	public boolean move (int xInit, int yInit, int xFinal, int yFinal){
@@ -60,7 +65,7 @@ public class ChessGame extends Observable {
 		}
 		this.setChanged();
 		this.notifyObservers(new Object[]{xInit, yInit, xFinal, yFinal, ret});
-		return ret;	
+		return ret;
 	}
 
 	public boolean isEchecEtMat(){
@@ -75,52 +80,4 @@ public class ChessGame extends Observable {
 	public Couleur getColorCurrentPlayer(){		
 		return echiquier.getColorCurrentPlayer();		
         }
-
-    @Override
-    public synchronized int countObservers() {
-        return super.countObservers(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public synchronized boolean hasChanged() {
-        return super.hasChanged(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected synchronized void clearChanged() {
-        super.clearChanged(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    protected synchronized void setChanged() {
-        super.setChanged(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public synchronized void deleteObservers() {
-        super.deleteObservers(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notifyObservers(Object arg) {
-        super.notifyObservers(arg); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notifyObservers() {
-        super.notifyObservers(); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public synchronized void deleteObserver(Observer o) {
-        super.deleteObserver(o); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public synchronized void addObserver(Observer o) {
-        super.addObserver(o); //To change body of generated methods, choose Tools | Templates.
-    }
-        
-        
-
 }

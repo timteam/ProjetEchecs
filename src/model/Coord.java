@@ -37,8 +37,25 @@ public class Coord implements Serializable {
 		return ( (x<=7) && (x>=0) && (y<=7) && (y>=0) );
 	}
 
-    public boolean isEqual(Coord other) {
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 61 * hash + this.x;
+        hash = 61 * hash + this.y;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        
+        final Coord other = (Coord) obj;
         return (other.x == x && other.y == y);
     }
-        
+       
 }

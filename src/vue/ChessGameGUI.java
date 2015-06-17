@@ -17,6 +17,7 @@ import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
@@ -37,12 +38,15 @@ import tools.ChessImageProvider;
  *
  * @author timotheetroncy
  */
-public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener, Observer {
+public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionListener//, Observer 
+{
 
     private final JLayeredPane layeredPane;
     private final JPanel chessBoard;
     private ChessGameControlers controler;
-    private HashMap<JPanel, Coord> cases;
+    private HashMap<JPanel, Coord> casesFromJPanel;
+    private JPanel[][] casesFromCoord;
+
     JLabel chessPiece;
     int xAdjustment;
     int yAdjustment;
@@ -51,7 +55,8 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
 
     public ChessGameGUI(String jeu_d_echec, ChessGameControlers chessGameControler, Dimension dim) {
 
-        cases = new HashMap();
+        casesFromJPanel = new HashMap();
+        casesFromCoord = new JPanel[8][8];
         Dimension boardSize = dim;
         controler = chessGameControler;
         //  Use a Layered Pane for this this application
@@ -73,7 +78,9 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
             JPanel square = new JPanel(new BorderLayout());
             chessBoard.add(square);
 
-            cases.put(square, new Coord(i % 8, i / 8));
+            casesFromJPanel.put(square, new Coord(i % 8, i / 8));
+
+            casesFromCoord[i % 8][i / 8] = square;
 
             int row = (i / 8) % 2;
             if (row == 0) {
@@ -92,7 +99,7 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
                 if (ChessImageProvider.isCoordOK(x, y)) {
                     file = ChessImageProvider.getImageFile(ChessImageProvider.getType(x, y), ChessImageProvider.getCouleur(x, y));
                     JLabel piece = new JLabel(new ImageIcon(file));
-                    JPanel panel = (JPanel) chessBoard.getComponent(x *8 + y);
+                    JPanel panel = (JPanel) chessBoard.getComponent(x * 8 + y);
                     panel.add(piece);
                 }
             }
@@ -130,42 +137,53 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
         }
 
         JPanel panelDebut = (JPanel) chessBoard.findComponentAt(beforeX, beforeY);
-        Coord coordDebut = cases.get(panelDebut);
+        Coord coordDebut = casesFromJPanel.get(panelDebut);
 
-        JPanel panelFin = (JPanel) chessBoard.findComponentAt(e.getX(), e.getY());
-        Coord coordFin = cases.get(panelFin);
-
-        System.out.println(coordDebut);
-        System.out.println(coordFin);
-        chessPiece.setVisible(false);
-        
-        Boolean moveOK = controler.move(coordDebut, coordFin);
-        
-        if (moveOK) {
-                Container parent = (Container) panelFin;
-                parent.add(chessPiece);
-            
+        Component panelFin = chessBoard.findComponentAt(e.getX(), e.getY());
+        Coord coordFin;
+        if (panelFin instanceof JLabel) {
+            Container parent = panelFin.getParent();
+            coordFin = casesFromJPanel.get(parent);
         } else {
-                Container parent = (Container) panelDebut;
+            Container parent = (Container) panelFin;
+            coordFin = casesFromJPanel.get(parent);
+        }
+
+        // System.out.println(coordDebut);
+        // System.out.println(coordFin);
+        chessPiece.setVisible(false);
+        Boolean moveOK = controler.move(coordDebut, coordFin);
+
+        if (moveOK) {
+            if (panelFin instanceof JLabel) {
+                Container parent = panelFin.getParent();
+                parent.remove(panelFin);
                 parent.add(chessPiece);
-            
+            }else{
+                    Container parent = (Container) panelFin;
+                    parent.add(chessPiece);
+            }
+
+        } else {
+            Container parent = (Container) panelDebut;
+            parent.add(chessPiece);
         }
 
         chessPiece.setVisible(true);
     }
 
-@Override
-        public void mouseEntered(MouseEvent e) {
+    @Override
+    public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-        public void mouseExited(MouseEvent e) {
+    public void mouseExited(MouseEvent e) {
 
     }
 
     @Override
-        public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
         if (chessPiece == null) {
             return;
         }
@@ -173,13 +191,21 @@ public class ChessGameGUI extends JFrame implements MouseListener, MouseMotionLi
     }
 
     @Override
-        public void mouseMoved(MouseEvent e) {
+    public void mouseMoved(MouseEvent e) {
 
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+//    @Override
+//    //refreshes the vue
+//    public void update(Observable o, Object arg) {
+//        new Coord(arg[0]), arg[1]);
+//        new Coord(arg[2], arg[3]);
+//        JPanel jpDebut = casesFromCoord.get();
+//        JPanel jp2Fin = casesFromCoord.get();
+//        chessPiece.setVisible(false);
+//
+//        Container parent = (Container) panelFin;
+//        parent.add(chessPiece);
+//        chessPiece.setVisible(true);
+//    }
 }

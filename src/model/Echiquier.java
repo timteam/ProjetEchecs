@@ -33,12 +33,16 @@ public class Echiquier {
     
     public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
 
+        if (!pieceDuJeuCourant(xInit, yInit)){
+            return false;
+        }
         if (someoneOnThePath(xInit, yInit, xFinal, yFinal) && isNotCavalier(xInit, yInit)) {
             return false;
         }
         if (isFriend(xFinal, yFinal)) {
             return false;
         }
+        
         if (jeuCourant.isMoveOk(xInit, yInit, xFinal, yFinal)) {
             if (isNotEmpty(xFinal, yFinal)) {
                 //c'est un ennemi
@@ -129,5 +133,9 @@ public class Echiquier {
             return false;
         }
         return true;
+    }
+
+    private boolean pieceDuJeuCourant(int xInit, int yInit) {
+        return jeuCourant.isPieceHere(xInit, yInit);
     }
 }
